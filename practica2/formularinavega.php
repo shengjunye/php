@@ -7,23 +7,24 @@
     <title>Formulari navega</title>
 </head>
 <body>
-    <h1>navega</h1>
+    <h1>Navegador de Llibres</h1>
     <?php
+        include "clXML.php";
+
         if(isset($_GET["index"])){
+            
             $index = $_GET["index"];
         } else {
             $index = 0;
         }
-
-        include "clXML.php";
         $llibre = new clXML();
-        echo "<h1>Array " . $index ."</h1>";
+        echo "<h1>Llibre " . ($index+1) ."</h1>";
         $llibre->nodeXML($index);
     ?>
     <div>
     <a href="formularinavega.php?index=<?php echo 0; ?>"><<</a>
-    <a href="formularinavega.php?index=<?php echo $index-1; ?>"><</a>
-    <a href="formularinavega.php?index=<?php echo $index+1; ?>">></a>
+    <a href="formularinavega.php?index=<?php echo ($index < 1)?0:$index-1; ?>"><</a>
+    <a href="formularinavega.php?index=<?php echo ($index > $llibre->ultimNode()-1)?$llibre->ultimNode():$index+1; ?>">></a>
     <a href="formularinavega.php?index=<?php echo $llibre->ultimNode(); ?>">>></a>
     </div>
     <br>

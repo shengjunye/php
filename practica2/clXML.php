@@ -2,7 +2,6 @@
 class clXML{
     private $arxiu;
     private $llibres;
-    private $index;
 
     function __construct(){
         $this->arxiu = "LLIBRES.XML";
@@ -20,7 +19,7 @@ class clXML{
         return $this->index;
     }
     public function nodeXML($index){
-        $this->index = $index;
+        $index = (int) $index;
         echo "Autor: " . $this->llibres->book[$index]->author . "<br/>";
         echo "Titol: " . $this->llibres->book[$index]->title . "<br/>";
         echo "Genere: " . $this->llibres->book[$index]->genre . "<br/>";
@@ -36,13 +35,9 @@ class clXML{
         } 
         echo "</ul>";
     }
-    
-    public function primerNode(){
-        return $this->index = 0;
-    }
 
     public function ultimNode(){
-        return $this->index = $this->llibres->count()-1;
+        return $this->llibres->count()-1;
     }
 }
 ?>

@@ -10,11 +10,19 @@
     <h1>llista dels llibres</h1>
 
     <?php
-        include "clXML.php";
-
+    try {
+        $arxiu = "clXML.php";
+        if (!file_exists($arxiu)){
+            throw new arxiuException("Error en incluir la classe ". $arxiu . "</br>");
+        }
+        include $arxiu;
+        
         $llibre = new clXML();
         
-        $llibre->readalltitles();   
+        $llibre->readalltitles(); 
+    } catch(Exception $e){
+        echo $e->getMessage();
+    }
     ?>
     
     <a href="index.php">Tornar</a>

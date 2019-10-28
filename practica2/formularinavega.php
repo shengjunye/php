@@ -9,7 +9,12 @@
 <body>
     <h1>Navegador de Llibres</h1>
     <?php
-        include "clXML.php";
+    try {
+        $arxiu = "clXML.php";
+        if (!file_exists($arxiu)){
+            throw new Exception("Error en incluir la classe ". $arxiu . "</br>");
+        }
+        include $arxiu;
 
         if(isset($_GET["index"])){
             
@@ -17,9 +22,15 @@
         } else {
             $index = 0;
         }
+
         $llibre = new clXML();
         echo "<h1>Llibre " . ($index+1) ."</h1>";
         $llibre->nodeXML($index);
+
+    } catch (Exception $e) {
+        echo $e->getMessage();
+    }
+
     ?>
     <div>
     <a href="formularinavega.php?index=<?php echo 0; ?>"><<</a>

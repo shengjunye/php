@@ -11,11 +11,7 @@
 
     <?php
     try {
-        $arxiu = "clXML.php";
-        if (!file_exists($arxiu)){
-            throw new arxiuException("Error en incluir la classe ". $arxiu . "</br>");
-        }
-        include $arxiu;
+        include "clXML.php";
         
         $llibre = new clXML();
         
